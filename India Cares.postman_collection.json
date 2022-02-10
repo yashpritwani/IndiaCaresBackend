@@ -1,0 +1,669 @@
+{
+	"info": {
+		"_postman_id": "4fd0180d-904e-42b3-a794-29cfa9951944",
+		"name": "India Cares",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Users --Admin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/admin",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWU1ZDI2MTY5ODMyMzVmYzlkYjhiMSIsInVzZXJuYW1lIjoiQWJoaXNoZWsiLCJmaXJzdE5hbWUiOiJhYmhpIiwibGFzdE5hbWUiOiJwcmEiLCJpYXQiOjE2Mzg4Njc1MDIsImV4cCI6MzI4MjkxOTAwNH0.RvHN730oyImhiS5o9OYfo1Mey-dqAIVecOh58mjud8c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "emailId",
+							"value": "abhishekpradhan901@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Stans@me",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "emailId",
+							"value": "abhishekpradhan901@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "firstName",
+							"value": "Abhishek",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Pradhan",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Stans@me",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register With Phone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "phoneNo",
+							"value": "8208688347",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "basic",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/registerWithPhone",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"registerWithPhone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login With Phone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "phoneNo",
+							"value": "8208688347",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/loginWithPhone",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"loginWithPhone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/auth/verify/9fcd537858b1ddeeb2ce35e56dc3edbf22c116c1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"verify",
+						"9fcd537858b1ddeeb2ce35e56dc3edbf22c116c1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resend Verification Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "emailId",
+							"value": "abhishekpradhan901@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/resend",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"resend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reset Password Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/auth/reset/9fcd537858b1ddeeb2ce35e56dc3edbf22c116c1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"reset",
+						"9fcd537858b1ddeeb2ce35e56dc3edbf22c116c1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get A User --Admin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/admin/61b050e24c64d02f3c9262c9",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin",
+						"61b050e24c64d02f3c9262c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Campaign Status --Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjViYzE5YzI0ODY2MjMxMDA2N2FmOSIsImZpcnN0TmFtZSI6IkFiaGlzaGVrIiwibGFzdE5hbWUiOiJQcmFkaGFuIiwiaWF0IjoxNjM5MzAxNjE0LCJleHAiOjMyODM3ODcyMjh9.TVBoSxqReCvysZG3kZqNSNRbC5m7gCJD_NVsVKeCGTQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "campId",
+							"value": "61af297f59bb892a4873624d",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Pending",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/admin/campaignStatus",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin",
+						"campaignStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Campaign",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjViYzE5YzI0ODY2MjMxMDA2N2FmOSIsImZpcnN0TmFtZSI6IkFiaGlzaGVrIiwibGFzdE5hbWUiOiJQcmFkaGFuIiwiaWF0IjoxNjM5MzAxNjE0LCJleHAiOjMyODM3ODcyMjh9.TVBoSxqReCvysZG3kZqNSNRbC5m7gCJD_NVsVKeCGTQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/admin/editCampaign/61af297f59bb892a4873624d",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin",
+						"editCampaign",
+						"61af297f59bb892a4873624d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User --Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjViYzE5YzI0ODY2MjMxMDA2N2FmOSIsImZpcnN0TmFtZSI6IkFiaGlzaGVrIiwibGFzdE5hbWUiOiJQcmFkaGFuIiwiaWF0IjoxNjM5MzAxNjE0LCJleHAiOjMyODM3ODcyMjh9.TVBoSxqReCvysZG3kZqNSNRbC5m7gCJD_NVsVKeCGTQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/admin/deleteUser/61b0b6f13beb5322e8a7f63a",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin",
+						"deleteUser",
+						"61b0b6f13beb5322e8a7f63a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Campaign",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjViYzE5YzI0ODY2MjMxMDA2N2FmOSIsImZpcnN0TmFtZSI6IkFiaGlzaGVrIiwibGFzdE5hbWUiOiJQcmFkaGFuIiwiaWF0IjoxNjM5MzAxNjE0LCJleHAiOjMyODM3ODcyMjh9.TVBoSxqReCvysZG3kZqNSNRbC5m7gCJD_NVsVKeCGTQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "61b5bc19c248662310067af9",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/admin/deleteCampaign/61af89d8a6c6353f44b489b3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin",
+						"deleteCampaign",
+						"61af89d8a6c6353f44b489b3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upgrade to admin --Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjViYzE5YzI0ODY2MjMxMDA2N2FmOSIsImZpcnN0TmFtZSI6IkFiaGlzaGVrIiwibGFzdE5hbWUiOiJQcmFkaGFuIiwiaWF0IjoxNjM5MzAxNjE0LCJleHAiOjMyODM3ODcyMjh9.TVBoSxqReCvysZG3kZqNSNRbC5m7gCJD_NVsVKeCGTQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/admin/upgrade/61b050e24c64d02f3c9262c9",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin",
+						"upgrade",
+						"61b050e24c64d02f3c9262c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Campaigns",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/campaign/getAllCampaigns",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"campaign",
+						"getAllCampaigns"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Your Campaigns",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjViYzE5YzI0ODY2MjMxMDA2N2FmOSIsImZpcnN0TmFtZSI6IkFiaGlzaGVrIiwibGFzdE5hbWUiOiJQcmFkaGFuIiwiaWF0IjoxNjM5MzAxNjE0LCJleHAiOjMyODM3ODcyMjh9.TVBoSxqReCvysZG3kZqNSNRbC5m7gCJD_NVsVKeCGTQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/campaign/getUserCampaigns",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"campaign",
+						"getUserCampaigns"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Popular Campaigns",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/campaign/getSearchedCampaign",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"campaign",
+						"getSearchedCampaign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Account",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/61af615d298de91770dfa61d",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"61af615d298de91770dfa61d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Campaign",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjViYzE5YzI0ODY2MjMxMDA2N2FmOSIsImZpcnN0TmFtZSI6IkFiaGlzaGVrIiwibGFzdE5hbWUiOiJQcmFkaGFuIiwiaWF0IjoxNjM5MzAxNjE0LCJleHAiOjMyODM3ODcyMjh9.TVBoSxqReCvysZG3kZqNSNRbC5m7gCJD_NVsVKeCGTQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "New Campaign",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "This is a random Campaign",
+							"type": "text"
+						},
+						{
+							"key": "targetPrice",
+							"value": "120",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/user/createCampaign",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"createCampaign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Right To Information",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/RTI",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"RTI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Feedback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/feedback",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contact Us",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/ContactUs",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"ContactUs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of all Donars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/allData",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"allData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "account_number",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "contact_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "fund_account_id",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/payment/payment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"payment",
+						"payment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
