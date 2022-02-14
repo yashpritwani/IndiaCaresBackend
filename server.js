@@ -44,12 +44,12 @@ connection.on('error', (err) => {
     process.exit();
 });
 
-if(process.env.NODE_ENV == "production"){
-    app.use(express.static("frontend/build"))
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '/frontend/build', 'index.html'));
-    });
-}
+// if(process.env.NODE_ENV == "production"){
+//     app.use(express.static("frontend/build"))
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.join(__dirname, '/frontend/build', 'index.html'));
+//     });
+// }
 
 app.use(passport.initialize());
 app.use(passport.session());

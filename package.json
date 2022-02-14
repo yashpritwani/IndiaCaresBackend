@@ -1,12 +1,7 @@
 {
   "scripts": {
-    "client-install": "npm install --prefix frontend",
     "start": "node server.js",
-    "server": "node server.js",
-    "develop": "nodemon server.js",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "develop": "nodemon server.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.4.4",

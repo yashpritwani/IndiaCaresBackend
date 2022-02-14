@@ -238,7 +238,8 @@ exports.updateCampaign = async function (req, res) {
         var imgs = req.body.moreImages
         var images = [];
         var documents = [];
-        var docs = req.body.docs;
+        var docs = req.body.documents;
+        // console.log(req.body.documents[0].documentName);
         var r;
         console.log(imgs.length,docs.length)
         for(var i = 0 ; i < imgs.length ; i++){
