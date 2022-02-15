@@ -30,7 +30,7 @@ exports.payment = async (req, res) => {
     let newDonation = new Donation({
         role: "basic",
         phoneNo: country_number,
-        userID: userId,
+        userId: userId,
         name: name,
         campaignId: campaignId,
         email: email,
@@ -41,11 +41,11 @@ exports.payment = async (req, res) => {
     });
     
     const newDonation_ = await newDonation.save();
-    const campaign = await Campaign.findById(campaignId);
-    
-    const user = await User.findById(userId);
-    // console.log(user);
-
+    var campaign,user
+    if(req.body.campaignId!=="Domestic" && req.body.campaignId!=="Foreign")
+    campaign = await Campaign.findById(campaignId);
+    if(req.body.userId!=="Not Registered")
+    user = await User.findById(userId);
     if(user)
     {
         let payment_ = user.payments
@@ -56,7 +56,6 @@ exports.payment = async (req, res) => {
     await User.findByIdAndUpdate(user._id, {payments: payment_}, {new: true});
     }
     const findTotalPrice = amount;
-    
         const payment_capture = 1;
         const currency = "INR";
         // console.log(currency);
@@ -89,13 +88,16 @@ exports.success = async (req, res) => {
     const payment_ = await Donation.findById(req.body.paymentId)
     payment_.role = "success"
     await payment_.save();
-    const campaign = await Campaign.findById(req.body.campaignId)
-    let payment = campaign.payments
-    payment.push({
-        paymentId: req.body.paymentId,
-        });
-    await Campaign.findByIdAndUpdate(campaign._id, {payments: payment}, {new: true});
-    const upd = await Campaign.findByIdAndUpdate(req.body.campaignId, {amount: parseInt(campaign.amount) + parseInt(req.body.amount)});
+    if(req.body.campaignId!=="Domestic" && req.body.campaignId!=="Foreign")
+    {
+        const campaign = await Campaign.findById(req.body.campaignId)
+        let payment = campaign.payments
+        payment.push({
+            paymentId: req.body.paymentId,
+            });
+        await Campaign.findByIdAndUpdate(campaign._id, {payments: payment}, {new: true});
+        const upd = await Campaign.findByIdAndUpdate(req.body.campaignId, {amount: parseInt(campaign.amount) + parseInt(req.body.amount)});
+    }
     const resp = await DonationSuccess(req.body.name,req.body.email)
     if(resp) res.status(202).json({message: 'Donation has been made successfully to the campaign'});
 }
