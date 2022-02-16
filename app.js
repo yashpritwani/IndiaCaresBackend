@@ -5,24 +5,24 @@ const cors = require('cors');
 const passport = require("passport");
 const path = require("path");
 const bodyParser =  require("body-parser");
-// var fs = require('file-system');
+var fs = require('file-system');
 const connUri = process.env.MONGO_LOCAL_CONN_URL;
 let PORT = process.env.PORT || 4000;
 const app = express();
 
 //For Hosting to AWS EC2 with Lets Encrypt SSL over domain
 
-// const privateKey = fs.readFileSync('/etc/letsencrypt/live/resources.tsaaro.com/privkey.pem', 'utf8');
-// const certificate = fs.readFileSync('/etc/letsencrypt/live/resources.tsaaro.com/cert.pem', 'utf8');
-// const ca = fs.readFileSync('/etc/letsencrypt/live/resources.tsaaro.com/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/india-env.eba-mn7w2m3j.us-east-1.elasticbeanstalk.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/india-env.eba-mn7w2m3j.us-east-1.elasticbeanstalk.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/india-env.eba-mn7w2m3j.us-east-1.elasticbeanstalk.com/chain.pem', 'utf8');
 
-// const credentials = {
-// 	key: privateKey,
-// 	cert: certificate,
-// 	ca: ca
-// };
-// const httpServer = http.createServer(app);
-// const httpsServer = https.createServer(credentials, app);
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
 
 app.use(cors());
 app.use(bodyParser.json({limit: '50mb'}))
@@ -62,7 +62,7 @@ app.listen(PORT, () => console.log('Server running on http://localhost:'+PORT+'/
 // 	console.log('HTTP Server running on port 80');
 // });
 
-// httpsServer.listen(443, () => {
-// 	console.log('HTTPS Server running on port 443');
-// });
+httpsServer.listen(8000, () => {
+	console.log('HTTPS Server running on port 8000');
+});
 
