@@ -1,4 +1,4 @@
-const connection= require("../../server")
+const connection= require("../../app")
 const mongoose=require('mongoose');
 const collection=mongoose.connection.collection('products');
 const Donation = require("../models/donation")
