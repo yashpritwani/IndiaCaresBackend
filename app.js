@@ -23,8 +23,12 @@ const app = express();
 // };
 // const httpServer = http.createServer(app);
 // const httpsServer = https.createServer(credentials, app);
-
-app.use(cors());
+const corsOptions ={
+    origin:'*', 
+    credentials:true, 
+    optionSuccessStatus:200,
+}
+app.use(cors(corsOptions))
 app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 app.use(express.json());
