@@ -116,6 +116,7 @@ exports.googleSignin = async (req, res) => {
             const {email_verified, name, given_name, family_name, sub, email, picture} = response.payload;
             if(email_verified === true) {
                 const user = await User.findOne({ emailId: email });
+                console.log(user)
                 if(user) {
                     res.status(200).json({token: user.generateJWT(), user: user});
                 }
