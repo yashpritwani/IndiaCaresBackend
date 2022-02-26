@@ -13,10 +13,9 @@ const UserSchema = new mongoose.Schema({
     },
     username: {
         type: String,
-        unique: true,
         required: [true, "Is required field"],
     },
-    role: {               //required to pass as bruteforce form through frontend
+    role: {
         type: String,
         required: true,
     },
