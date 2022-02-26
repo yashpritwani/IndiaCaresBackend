@@ -30,6 +30,9 @@ exports.signin = async(req, res) => {
                     await sendVerificationEmail(user_, req, res);
                     // console.log("user saved");
                 }
+                else{
+                    res.status(503).json({message: "You are already registered"});
+                }
             } catch(err){
                 res.status(500).json({message: err.message});
             }
