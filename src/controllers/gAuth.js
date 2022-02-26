@@ -7,38 +7,38 @@ const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
 exports.signin = async(req, res) => {
-    let token = req.body.token;
-    // console.log(token);
-    async function verify() {
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: process.env.CLIENT_ID,
-        });
-        const payload = ticket.getPayload();
-        const userid = payload['sub'];
-        // console.log(payload);
-        const newUser = new User({
-            emailId: payload.email,
-            username: payload.name,
-            firstName: payload.given_name,
-            lastName: payload.family_name,
-            password: payload.sub
-        });
-        try{
-            const user = await User.findOne({emailId: payload.email});
-            if(!user){
-                const user_ = await newUser.save();
-                await sendVerificationEmail(user_, req, res);
-                // console.log("user saved");
+    try{
+        let token = req.body.token;
+        async function verify() {
+            const ticket = await client.verifyIdToken({
+                idToken: token,
+                audience: process.env.CLIENT_ID,
+            });
+            const payload = ticket.getPayload();
+            const userid = payload['sub'];
+            const newUser = new User({
+                emailId: payload.email,
+                username: payload.name,
+                firstName: payload.given_name,
+                lastName: payload.family_name,
+                password: payload.sub
+            });
+            try{
+                const user = await User.findOne({emailId: payload.email});
+                if(!user){
+                    const user_ = await newUser.save();
+                    await sendVerificationEmail(user_, req, res);
+                    // console.log("user saved");
+                }
+            } catch(err){
+                res.status(500).json({message: err.message});
             }
-            else{
-                // console.log("user found");
-            }
-        } catch(err){
-            // console.log(err);
         }
-      }
-      verify().catch(console.error);
+        verify().catch(console.error);
+    }
+    catch(err){
+        res.status(500).json({message: err.message});
+    }
 }
 
 async function sendVerificationEmail(user, req, res){

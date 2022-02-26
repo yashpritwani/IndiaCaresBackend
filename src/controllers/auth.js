@@ -110,8 +110,9 @@ exports.googleSignin = async (req, res) => {
     // console.log(req.body);
     try{
         const {tokenId} = req.body;
-
-        client.verifyIdToken({idToken: tokenId, audience: process.env.CLIENT_ID}).then(async response => {
+        if(tokenId)
+        {
+            client.verifyIdToken({idToken: tokenId, audience: process.env.CLIENT_ID}).then(async response => {
             const {email_verified, name, given_name, family_name, sub, email, picture} = response.payload;
             if(email_verified === true) {
                 const user = await User.findOne({ emailId: email });
@@ -134,8 +135,12 @@ exports.googleSignin = async (req, res) => {
                     await sendVerificationEmail(user_, req, res);
             }
         })
+    }
+    else{
+        res.status(500).json({ message: "No token Provided"})
+    }
     } catch(err){
-        res.status(500).json({success: false, message: error.message})
+        res.status(500).json({success: false, message: err.message})
     }
 }
 

@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "sudo node app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.4.4",
