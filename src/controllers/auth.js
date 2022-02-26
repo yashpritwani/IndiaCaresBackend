@@ -116,12 +116,11 @@ exports.googleSignin = async (req, res) => {
             const {email_verified, name, given_name, family_name, sub, email, picture} = response.payload;
             if(email_verified === true) {
                 const user = await User.findOne({ emailId: email });
-                // console.log(user);
-                // console.log(picture);
-                if(user) return res.status(200).json({token: user.generateJWT(), user: user});
-
-                var Password = crypto.randomBytes(10).toString('hex');
-                // console.log(Password);
+                if(user) {
+                    res.status(200).json({token: user.generateJWT(), user: user});
+                }
+                else{
+                    var Password = crypto.randomBytes(10).toString('hex');
                     const newUser = new User({
                         username:name,
                         password: Password,
@@ -133,6 +132,10 @@ exports.googleSignin = async (req, res) => {
                     });
                     const user_ = await newUser.save();
                     await sendVerificationEmail(user_, req, res);
+                }
+            }
+            else{
+                res.status(500).json({ message: "Email ID is not verified , please verify to continue"})
             }
         })
     }
