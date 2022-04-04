@@ -16,7 +16,7 @@ exports.register = async (req, res) => {
             // console.log(result.url)
             const { emailId } = req.body;
             const user = await User.findOne({ emailId });
-            if (user) return res.status(401).json({message: 'Email pehle se register ho rakha hai.'});
+            if (user) return res.status(401).json({message: 'Email has already been registered.'});
             const {username, password, firstName, lastName } = req.body;
             // console.log(username, password, firstName, lastName)
             const newUser = new User({
@@ -41,13 +41,13 @@ exports.register = async (req, res) => {
             }
             let user = await User.findOne({ emailId });
             // console.log(user);
-            if (user) return res.status(401).json({message: 'Email pehle se register ho rakha hai.'});
+            if (user) return res.status(401).json({message: 'Email has already been registered.'});
             const {username, password, firstName, lastName } = req.body;
             if(username==='') return res.status(404).json({
                 message: "Please provide a username"
             })
             user = await User.findOne({ username });
-            if (user) return res.status(401).json({message: 'There already exists a user with this username'});
+            if (user) return res.status(401).json({message: 'Username already taken'});
             // console.log(username, password, firstName, lastName)
             const newUser = new User({
                 role : 'basic',
@@ -184,11 +184,11 @@ exports.login = async (req, res) => {
         const { emailId, password } = req.body;
         const user = await User.findOne({ emailId });
         if (!user) 
-            return res.status(401).json({msg: 'yeh ' + email + ' galat email hai'});
+            return res.status(401).json({msg: 'Invalid email'});
         if (!user.comparePassword(password)) 
-            return res.status(401).json({message: 'galat hai email/pass'});
+            return res.status(401).json({message: 'Invalid credentials'});
         if (!user.isVerified) 
-            return res.status(401).json({ type: 'not-verified', message: 'Verify nai hua.' });
+            return res.status(401).json({ type: 'not-verified', message: 'Email is not verified.' });
         res.status(200).json({token: user.generateJWT(), user: user});
     } catch (error) {
         res.status(500).json({message: error.message})
