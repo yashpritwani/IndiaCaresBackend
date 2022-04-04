@@ -117,7 +117,7 @@ exports.createCampaign = async (req, res) => {
         if(req.body.additionalImages){
             for(let i=0; i<req.body.additionalImages.length; i++){
                 r = await uploader(req.body.additionalImages[i], res);
-                console.log(r.url);
+                // console.log(r.url);
                 images.push(r.url);
             }
         }
@@ -128,7 +128,7 @@ exports.createCampaign = async (req, res) => {
                     documentName: req.body.documentName[i],
                     documentUrl: r.url
                 }
-                console.log(doc);
+                // console.log(doc);
                 documents.push(doc);
             }
         }
@@ -176,7 +176,7 @@ exports.createCampaign = async (req, res) => {
             campaign_
         })
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({success: false, message: error.message})
     }
 };
@@ -195,7 +195,7 @@ exports.showUserId = async function (req, res) {
             return res.status(401).json({message: 'User does not exist'});
         res.status(200).json({user});
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({message: error.message})
     }
 };
@@ -210,7 +210,7 @@ async function sendCampaignEmail(campaign, user, req, res){
         await sendEmail({to, from, subject, html});
         // res.status(200).json({message: 'Campaign Creation success email has been sent.'});
     }catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({message: error.message});
     }
 }
@@ -241,7 +241,7 @@ exports.updateCampaign = async function (req, res) {
         var docs = req.body.documents;
         // console.log(req.body.documents[0].documentName);
         var r;
-        console.log(imgs.length,docs.length)
+        // console.log(imgs.length,docs.length)
         for(var i = 0 ; i < imgs.length ; i++){
             if (await camp.moreImages.indexOf(imgs[i])===-1){
                 var j = await uploader(imgs[i], res);
@@ -269,7 +269,7 @@ exports.updateCampaign = async function (req, res) {
         const campaign = await Campaign.findByIdAndUpdate(id, {$set: update}, {new: true});
         await updateCampaignEmail(campaign , user, req, res);
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({message: error.message});
     }
 };

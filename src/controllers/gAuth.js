@@ -25,7 +25,7 @@ exports.signin = async(req, res) => {
             });
             try{
                 const user = await User.findOne({emailId: payload.email});
-                console.log(user)
+                // console.log(user)
                 if(!user){
                     const user_ = await newUser.save();
                     await sendVerificationEmail(user_, req, res);

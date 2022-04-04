@@ -65,7 +65,7 @@ exports.payment = async (req, res) => {
             receipt: reciept,
             payment_capture,
         };
-        console.log(options);
+        // console.log(options);
         try {
             const response = await razorpay.orders.create(options);
             // console.log(response)
@@ -79,7 +79,7 @@ exports.payment = async (req, res) => {
             });
         }
         } catch (error) {
-            console.log(error);
+            res.send(error);
         }
 
 }
@@ -112,7 +112,7 @@ async function DonationSuccess(name,email, req,res){
         const resp = await sendEmail({to, from, subject, html});
         return resp
     }catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).json({message: error.message});
     }
 }

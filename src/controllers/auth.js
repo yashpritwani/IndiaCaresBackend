@@ -13,12 +13,12 @@ exports.register = async (req, res) => {
     try {
         if(req.body.profileImage !== undefined){
             const result = await uploader(req.body.profileImage, res);
-            console.log(result.url)
+            // console.log(result.url)
             const { emailId } = req.body;
             const user = await User.findOne({ emailId });
             if (user) return res.status(401).json({message: 'Email pehle se register ho rakha hai.'});
             const {username, password, firstName, lastName } = req.body;
-            console.log(username, password, firstName, lastName)
+            // console.log(username, password, firstName, lastName)
             const newUser = new User({
                 role : 'basic',
                 emailId,
@@ -48,7 +48,7 @@ exports.register = async (req, res) => {
             })
             user = await User.findOne({ username });
             if (user) return res.status(401).json({message: 'There already exists a user with this username'});
-            console.log(username, password, firstName, lastName)
+            // console.log(username, password, firstName, lastName)
             const newUser = new User({
                 role : 'basic',
                 emailId,
@@ -61,7 +61,7 @@ exports.register = async (req, res) => {
             await sendVerificationEmail(user_, req, res);
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({success: false, message: error.message})
     }
 };
@@ -116,7 +116,7 @@ exports.googleSignin = async (req, res) => {
             const {email_verified, name, given_name, family_name, sub, email, picture} = response.payload;
             if(email_verified === true) {
                 const user = await User.findOne({ emailId: email });
-                console.log(user)
+                // console.log(user)
                 if(user) {
                     res.status(200).json({token: user.generateJWT(), user: user});
                 }
