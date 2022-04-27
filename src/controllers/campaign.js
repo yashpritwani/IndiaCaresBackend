@@ -87,41 +87,41 @@ exports.pendingCampaign = async function(req, res){
     }
 }
 
-exports.search=async (request, response) =>{
+// exports.search=async (request, response) =>{
 
-    try { 
-        // console.log(collection,request.query.term)
-        let result = await collection.aggregate([
-        {
+//     try { 
+//         // console.log(collection,request.query.term)
+//         let result = await collection.aggregate([
+//         {
             
-            "$search": {
-                "autocomplete": {
-                    "query": `${request.query.term}`,
-                    "path": "title",
-                }
-            }
-        },
-        {"$limit": 10}
-    ]).toArray();
-//   console.log(result);
-    response.send(result);
-} catch (e) {
-    try{
-        Campaign.getAll(req.query).then(campaigns =>{
-            response.status(200).json(campaigns)
-        }).catch(() => res.status(500).end())
-    }
-    catch{
-        response.status(500).json("Searched Product Not Found.");
-    }
-}
-};
-async function getAll(query) {
-let campaigns = await Campaign.find({}).lean()
-if (query.search) 
-    campaigns = Campaign.filter(x => x.name.toLowerCase().includes(query.search))
-return campaigns;
-}
+//             "$search": {
+//                 "autocomplete": {
+//                     "query": `${request.query.term}`,
+//                     "path": "title",
+//                 }
+//             }
+//         },
+//         {"$limit": 10}
+//     ]).toArray();
+// //   console.log(result);
+//     response.send(result);
+// } catch (e) {
+//     try{
+//         Campaign.getAll(req.query).then(campaigns =>{
+//             response.status(200).json(campaigns)
+//         }).catch(() => res.status(500).end())
+//     }
+//     catch{
+//         response.status(500).json("Searched Product Not Found.");
+//     }
+// }
+// };
+// async function getAll(query) {
+// let campaigns = await Campaign.find({}).lean()
+// if (query.search) 
+//     campaigns = Campaign.filter(x => x.name.toLowerCase().includes(query.search))
+// return campaigns;
+// }
 
 exports.showAll = async function (req, res) {
 
