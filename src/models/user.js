@@ -136,7 +136,6 @@ UserSchema.methods.generateVerificationToken = function() {
         userId: this._id,
         token: crypto.randomBytes(20).toString('hex')
     };
-
     return new Token(payload);
 };
 
