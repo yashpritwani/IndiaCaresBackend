@@ -7,7 +7,7 @@ const path = require("path");
 const bodyParser =  require("body-parser");
 var fs = require('file-system');
 const connUri = process.env.MONGO_LOCAL_CONN_URL;
-let PORT = process.env.PORT || 4000;
+let PORT = process.env.PORT || 4567;
 const app = express();
 
 // ->For Hosting to AWS EC2 with Lets Encrypt SSL over domain
